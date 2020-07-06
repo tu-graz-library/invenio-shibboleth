@@ -13,8 +13,8 @@
 .. image:: https://img.shields.io/travis/mb-wali/invenio-shibboleth.svg
         :target: https://travis-ci.org/mb-wali/invenio-shibboleth
 
-.. image:: https://img.shields.io/coveralls/mb-wali/invenio-shibboleth.svg
-        :target: https://coveralls.io/r/mb-wali/invenio-shibboleth
+.. image:: https://coveralls.io/repos/github/mb-wali/invenio-shibboleth/badge.svg?branch=master
+        :target: https://coveralls.io/github/mb-wali/invenio-shibboleth?branch=master
 
 .. image:: https://img.shields.io/github/tag/mb-wali/invenio-shibboleth.svg
         :target: https://github.com/mb-wali/invenio-shibboleth/releases
