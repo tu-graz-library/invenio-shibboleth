@@ -27,7 +27,10 @@
 
 Invenio module module that provides SAML integration.
 
-TODO: Please provide feature overview of module
+These two modules has been merged into one:
+
+* ``invenio-saml`` Further documentation is available on https://invenio-saml.readthedocs.io/
+* ``flask-sso-saml`` Further documentation is available on https://flask-sso-saml.readthedocs.io/
 
 Further documentation is available on
 https://invenio-shibboleth.readthedocs.io/
