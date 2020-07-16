@@ -25,7 +25,7 @@
 .. image:: https://img.shields.io/github/license/mb-wali/invenio-shibboleth.svg
         :target: https://github.com/mb-wali/invenio-shibboleth/blob/master/LICENSE
 
-Invenio module module that provides SAML integration.
+Invenio module that provides SAML integration.
 
 These two modules has been merged into one:
 
