@@ -40,3 +40,15 @@ recursive-include tests *.py
 
 # added by check-manifest
 recursive-include tests *.py
+
+# added by check-manifest
+recursive-include tests *.crt
+recursive-include tests *.key
+recursive-include tests *.xml
+
+# added by check-manifest
+recursive-include invenio_shibboleth *.py
+recursive-include invenio_shibboleth *.sh
+
+# added by check-manifest
+recursive-include tests *.sh
