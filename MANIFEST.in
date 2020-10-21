@@ -34,3 +34,9 @@ recursive-include examples *.sh
 recursive-include invenio_shibboleth *.html
 recursive-include invenio_shibboleth/translations *.po *.pot *.mo
 recursive-include tests *.py
+
+# added by check-manifest
+recursive-include tests *.py
+
+# added by check-manifest
+recursive-include tests *.py
