@@ -127,6 +127,8 @@ def test_metadata(appctx, metadata_response):
     metadata_url = url_for("sso_saml.metadata", idp="test-idp")
     with appctx.test_client() as client:
         res = client.get(metadata_url)
+        print('metadata_response --------------', metadata_response)
+        print('res.data------------------------', res.data)
         assert res.status_code == 200
         assert res.data == metadata_response
 
