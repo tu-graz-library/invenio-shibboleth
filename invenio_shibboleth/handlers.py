@@ -13,9 +13,14 @@ from flask_security import logout_user
 from invenio_db import db
 
 from .invenio_accounts.errors import AlreadyLinkedError
-from .invenio_accounts.utils import account_authenticate, account_get_user, \
-    account_link_external_id, account_register, \
-    create_csrf_disabled_registrationform, fill_form
+from .invenio_accounts.utils import (
+    account_authenticate,
+    account_get_user,
+    account_link_external_id,
+    account_register,
+    create_csrf_disabled_registrationform,
+    fill_form,
+)
 from .invenio_app import get_safe_redirect_target
 
 
@@ -31,8 +36,8 @@ def account_info(attributes, remote_app):
     :mappings extracts the mapping or attributes for given remote_app.
 
     """
-    if current_app.config['SSO_SAML_IDPS']:
-        mappings = current_app.config['SSO_SAML_IDPS'][remote_app]['mappings']
+    if current_app.config["SSO_SAML_IDPS"]:
+        mappings = current_app.config["SSO_SAML_IDPS"][remote_app]["mappings"]
     else:
         mappings = {
             "email": "email",
@@ -41,35 +46,35 @@ def account_info(attributes, remote_app):
             "external_id": "external_id",
         }
 
-    name = attributes[mappings['name']][0]
-    surname = attributes[mappings['surname']][0]
-    email = attributes[mappings['email']][0]
-    external_id = attributes[mappings['external_id']][0]
+    name = attributes[mappings["name"]][0]
+    surname = attributes[mappings["surname"]][0]
+    email = attributes[mappings["email"]][0]
+    external_id = attributes[mappings["external_id"]][0]
 
     # custom attr
-    if 'org_id' in attributes and 'org_id' in mappings:
-        org_id = attributes[mappings['org_id']][0]
+    if "org_id" in attributes and "org_id" in mappings:
+        org_id = attributes[mappings["org_id"]][0]
         # set the value to the session
-        session['org_id'] = org_id
+        session["org_id"] = org_id
 
-    if 'org_name' in attributes and 'org_name' in mappings:
-        org_name = attributes[mappings['org_name']][0]
+    if "org_name" in attributes and "org_name" in mappings:
+        org_name = attributes[mappings["org_name"]][0]
         # set the value to the session
-        session['org_name'] = org_name
+        session["org_name"] = org_name
 
-    if 'identifier' in attributes and 'identifier' in mappings:
-        identifier = attributes[mappings['identifier']][0]
+    if "identifier" in attributes and "identifier" in mappings:
+        identifier = attributes[mappings["identifier"]][0]
         # set the value to the session
-        session['identifier'] = identifier
+        session["identifier"] = identifier
 
     return dict(
         user=dict(
             email=email,
-            profile=dict(username=surname, full_name=name+" "+surname),
+            profile=dict(username=surname, full_name=name + " " + surname),
         ),
         external_id=external_id,
         external_method=remote_app,
-        active=True
+        active=True,
     )
 
 
@@ -79,8 +84,9 @@ def default_account_setup(user, account_info):
         account_link_external_id(
             user,
             dict(
-                id=account_info['external_id'],
-                method=account_info['external_method']))
+                id=account_info["external_id"], method=account_info["external_method"]
+            ),
+        )
     except AlreadyLinkedError:
         pass
 
@@ -88,8 +94,9 @@ def default_account_setup(user, account_info):
 def default_sls_handler(auth, next_url):
     """Default SLS handler which simply logs out the user."""
     logout_user()
-    next_url = (get_safe_redirect_target(_target=next_url) or
-                current_app.config['SECURITY_POST_LOGOUT_VIEW'])
+    next_url = (
+        get_safe_redirect_target(_target=next_url) or current_app.config["SECURITY_POST_LOGOUT_VIEW"]
+    )
     return next_url
 
 
@@ -130,6 +137,7 @@ def acs_handler_factory(remote_app, account_setup=default_account_setup):
 
     :return: function to be used as ACS handler
     """
+
     def default_acs_handler(auth, next_url):
         """Default ACS handler.
 
@@ -140,19 +148,17 @@ def acs_handler_factory(remote_app, account_setup=default_account_setup):
         """
         if not current_user.is_authenticated:
             current_app.logger.debug(
-                'Metadata received from IdP %s', auth.get_attributes()
+                "Metadata received from IdP %s", auth.get_attributes()
             )
             _account_info = account_info(auth.get_attributes(), remote_app)
-            current_app.logger.debug(
-                'Metadata extracted from IdP %s', _account_info
-            )
+            current_app.logger.debug("Metadata extracted from IdP %s", _account_info)
             # TODO: signals?
 
             user = account_get_user(_account_info)
 
             if user is None:
                 form = create_csrf_disabled_registrationform()
-                form = fill_form(form, _account_info['user'])
+                form = fill_form(form, _account_info["user"])
                 user = account_register(form)
 
             # if registration fails ... TODO: signup?
@@ -163,8 +169,9 @@ def acs_handler_factory(remote_app, account_setup=default_account_setup):
 
         db.session.commit()
 
-        next_url = (get_safe_redirect_target(_target=next_url) or
-                    current_app.config['SECURITY_POST_LOGIN_VIEW'])
+        next_url = (
+            get_safe_redirect_target(_target=next_url) or current_app.config["SECURITY_POST_LOGIN_VIEW"]
+        )
         return next_url
 
     return default_acs_handler

@@ -13,19 +13,19 @@ from mock import patch
 
 def test_wrong_idp(appctx):
     """Test wrong Identity Provider name."""
-    login_url = url_for('sso_saml.sso', idp='wrong-idp')
+    login_url = url_for("sso_saml.sso", idp="wrong-idp")
     with appctx.test_client() as client:
         res = client.get(login_url)
         assert res.status_code == 404
-        assert b'Identity Provider not found' in res.data
+        assert b"Identity Provider not found" in res.data
 
 
 def test_login_error(appctx):
     """Test login error."""
-    login_url = url_for('sso_saml.sso', idp='test-idp')
+    login_url = url_for("sso_saml.sso", idp="test-idp")
     with appctx.test_client() as client, patch(
-            'invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.login'
-            ) as mock_login:
+        "invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.login"
+    ) as mock_login:
         mock_login.return_value = None
         res = client.get(login_url)
         assert res.status_code == 401
@@ -33,27 +33,27 @@ def test_login_error(appctx):
 
 def test_login(appctx):
     """Test SSO requests."""
-    login_url = url_for('sso_saml.sso', idp='test-idp')
+    login_url = url_for("sso_saml.sso", idp="test-idp")
     with appctx.test_client() as client:
         res = client.get(login_url)
         assert res.status_code == 302
-        assert res.location.startswith('https://test-ipd.com/sso?')
+        assert res.location.startswith("https://test-ipd.com/sso?")
 
-    login_url = url_for('sso_saml.sso', idp='test-idp', next='/next_url')
+    login_url = url_for("sso_saml.sso", idp="test-idp", next="/next_url")
     with appctx.test_client() as client:
         res = client.get(login_url)
         assert res.status_code == 302
-        assert res.location.startswith('https://test-ipd.com/sso?')
-        assert 'RelayState=%2Fnext_url' in res.location
+        assert res.location.startswith("https://test-ipd.com/sso?")
+        assert "RelayState=%2Fnext_url" in res.location
 
 
-@pytest.mark.freeze_time('2019-04-19T13:35:47Z')
+@pytest.mark.freeze_time("2019-04-19T13:35:47Z")
 def test_acs(appctx, sso_response):
     """Test ACS request."""
-    acs_url = url_for('sso_saml.acs', idp='test-idp')
+    acs_url = url_for("sso_saml.acs", idp="test-idp")
 
     with appctx.test_client() as client:
-        res = client.post(acs_url, data=dict(SAMLResponse=''))
+        res = client.post(acs_url, data=dict(SAMLResponse=""))
         assert res.status_code == 400
 
     with appctx.test_client() as client:
@@ -61,17 +61,17 @@ def test_acs(appctx, sso_response):
         assert res.status_code == 401
 
     with appctx.test_client() as client, patch(
-            'onelogin.saml2.auth.OneLogin_Saml2_Response.is_valid'
+        "onelogin.saml2.auth.OneLogin_Saml2_Response.is_valid"
     ) as mock_is_valid, patch(
-        'invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.is_authenticated'
-                              ) as mock_is_authenticated:
+        "invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.is_authenticated"
+    ) as mock_is_authenticated:
         mock_is_valid.return_value = True
         mock_is_authenticated.return_value = False
         res = client.post(acs_url, data=dict(SAMLResponse=sso_response))
         assert res.status_code == 403
 
     with appctx.test_client() as client, patch(
-            'onelogin.saml2.auth.OneLogin_Saml2_Response.is_valid'
+        "onelogin.saml2.auth.OneLogin_Saml2_Response.is_valid"
     ) as mock_is_valid:
         mock_is_valid.return_value = True
         res = client.post(acs_url, data=dict(SAMLResponse=sso_response))
@@ -80,22 +80,22 @@ def test_acs(appctx, sso_response):
 
 def test_logout(appctx):
     """Test SLO requests."""
-    logout_url = url_for('sso_saml.slo', idp='test-idp')
+    logout_url = url_for("sso_saml.slo", idp="test-idp")
     with appctx.test_client() as client:
         with client.session_transaction() as sess:
-            sess['SSO::SAML::NameId'] = 'ID'
-            sess['SSO::SAML::SessionIndex'] = 'INDEX'
+            sess["SSO::SAML::NameId"] = "ID"
+            sess["SSO::SAML::SessionIndex"] = "INDEX"
         res = client.get(logout_url)
         assert res.status_code == 302
-        assert res.location.startswith('https://test-ipd.com/slo?')
+        assert res.location.startswith("https://test-ipd.com/slo?")
 
 
 def test_logout_error(appctx):
     """Test logout error."""
-    login_url = url_for('sso_saml.slo', idp='test-idp')
+    login_url = url_for("sso_saml.slo", idp="test-idp")
     with appctx.test_client() as client, patch(
-            'invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.logout'
-            ) as mock_logout:
+        "invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.logout"
+    ) as mock_logout:
         mock_logout.return_value = None
         res = client.get(login_url)
         assert res.status_code == 401
@@ -103,40 +103,41 @@ def test_logout_error(appctx):
 
 def test_sls(appctx, slo_query_string):
     """Test SLS request."""
-    sls_url = url_for('sso_saml.sls', idp='test-idp')
+    sls_url = url_for("sso_saml.sls", idp="test-idp")
     with appctx.test_client() as client:
         res = client.get(sls_url, query_string=slo_query_string)
         assert res.status_code == 302
 
-    with patch('invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.get_errors'
-               ) as mock_get_erros, patch(
-                   'invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.get_last_error_reason'
-               ) as mock_get_reason:
-        mock_get_erros.return_value = ['bad error']
-        mock_get_reason.return_value = 'Test reason'
+    with patch(
+        "invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.get_errors"
+    ) as mock_get_erros, patch(
+        "invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.get_last_error_reason"
+    ) as mock_get_reason:
+        mock_get_erros.return_value = ["bad error"]
+        mock_get_reason.return_value = "Test reason"
         with appctx.test_client() as client:
             res = client.get(sls_url, query_string=slo_query_string)
             assert res.status_code == 401
-            assert res.json == ['bad error', 'Test reason']
+            assert res.json == ["bad error", "Test reason"]
 
 
-@pytest.mark.freeze_time('2019-04-18')
+@pytest.mark.freeze_time("2019-04-18")
 def test_metadata(appctx, metadata_response):
     """Test metadata request."""
-    metadata_url = url_for('sso_saml.metadata', idp='test-idp')
+    metadata_url = url_for("sso_saml.metadata", idp="test-idp")
     with appctx.test_client() as client:
         res = client.get(metadata_url)
         assert res.status_code == 200
         assert res.data == metadata_response
 
     with patch(
-            'onelogin.saml2.settings.OneLogin_Saml2_Settings.validate_metadata'
+        "onelogin.saml2.settings.OneLogin_Saml2_Settings.validate_metadata"
     ) as mock_validate_metadata, patch(
-            'invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.get_last_error_reason'
+        "invenio_shibboleth.flask_sso_saml.utils.SAMLAuth.get_last_error_reason"
     ) as mock_get_reason:
-        mock_validate_metadata.return_value = ['bad error', 'worst error']
-        mock_get_reason.return_value = 'Test reason'
+        mock_validate_metadata.return_value = ["bad error", "worst error"]
+        mock_get_reason.return_value = "Test reason"
         with appctx.test_client() as client:
             res = client.get(metadata_url)
             assert res.status_code == 401
-            assert res.json == ['bad error', 'worst error', 'Test reason']
+            assert res.json == ["bad error", "worst error", "Test reason"]

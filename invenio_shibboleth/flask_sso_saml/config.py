@@ -7,14 +7,15 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 """Flask extension that provides SSO SAML integration."""
 
-SSO_SAML_SESSION_KEY_NAME_ID = 'SSO::SAML::NameId'
+SSO_SAML_SESSION_KEY_NAME_ID = "SSO::SAML::NameId"
 """Key name to store the SSO Name ID in the session."""
 
-SSO_SAML_SESSION_KEY_SESSION_INDEX = 'SSO::SAML::SessionIndex'
+SSO_SAML_SESSION_KEY_SESSION_INDEX = "SSO::SAML::SessionIndex"
 """Key name to store the SSO Session Index in the session."""
 
-SSO_SAML_PREPARE_FLASK_REQUEST_FUNCTION = \
-    'invenio_shibboleth.flask_sso_saml.utils.prepare_flask_request'
+SSO_SAML_PREPARE_FLASK_REQUEST_FUNCTION = (
+    "invenio_shibboleth.flask_sso_saml.utils.prepare_flask_request"
+)
 """Default function to prepare the flask request to be sent to the IdP.
 
 If the server is behind proxys or balancers, this function might need to be
@@ -190,20 +191,20 @@ SSO_SAML_DEFAUTL_SLS_HANDLER = None
 
 # Blueprint and routes default configuration
 
-SSO_SAML_DEFAULT_BLUEPRINT_PREFIX = '/saml'
+SSO_SAML_DEFAULT_BLUEPRINT_PREFIX = "/saml"
 """Base URL for the extensions endpoint."""
 
-SSO_SAML_DEFAULT_METADATA_ROUTE = '/metadata/<idp>'
+SSO_SAML_DEFAULT_METADATA_ROUTE = "/metadata/<idp>"
 """URL route for the metadata request."""
 
-SSO_SAML_DEFAULT_SSO_ROUTE = '/sso/<idp>'
+SSO_SAML_DEFAULT_SSO_ROUTE = "/sso/<idp>"
 """URL route for the SP login."""
 
-SSO_SAML_DEFAULT_ACS_ROUTE = '/acs/<idp>'
+SSO_SAML_DEFAULT_ACS_ROUTE = "/acs/<idp>"
 """URL route to handle the IdP login request."""
 
-SSO_SAML_DEFAULT_SLO_ROUTE = '/slo/<idp>'
+SSO_SAML_DEFAULT_SLO_ROUTE = "/slo/<idp>"
 """URL route for the SP logout."""
 
-SSO_SAML_DEFAULT_SLS_ROUTE = '/sls/<idp>'
+SSO_SAML_DEFAULT_SLS_ROUTE = "/sls/<idp>"
 """URL route to handle the IdP logout request."""

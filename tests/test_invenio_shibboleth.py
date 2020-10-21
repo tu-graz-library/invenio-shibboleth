@@ -17,17 +17,18 @@ from invenio_shibboleth import Invenioshibboleth
 def test_version():
     """Test version import."""
     from invenio_shibboleth import __version__
+
     assert __version__
 
 
 def test_init():
     """Test extension initialization."""
-    app = Flask('testapp')
+    app = Flask("testapp")
     ext = Invenioshibboleth(app)
-    assert 'invenio-shibboleth' in app.extensions
+    assert "invenio-shibboleth" in app.extensions
 
-    app = Flask('testapp')
+    app = Flask("testapp")
     ext = Invenioshibboleth()
-    assert 'invenio-shibboleth' not in app.extensions
+    assert "invenio-shibboleth" not in app.extensions
     ext.init_app(app)
-    assert 'invenio-shibboleth' in app.extensions
+    assert "invenio-shibboleth" in app.extensions
