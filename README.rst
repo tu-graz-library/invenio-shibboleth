@@ -10,11 +10,11 @@
  invenio-shibboleth
 ====================
 
-.. image:: https://img.shields.io/travis/mb-wali/invenio-shibboleth.svg
-        :target: https://travis-ci.org/mb-wali/invenio-shibboleth
+.. image:: https://travis-ci.com/mb-wali/invenio-shibboleth.svg
+        :target: https://travis-ci.com/github/mb-wali/invenio-shibboleth
 
-.. image:: https://coveralls.io/repos/github/mb-wali/invenio-shibboleth/badge.svg?branch=master
-        :target: https://coveralls.io/github/mb-wali/invenio-shibboleth?branch=master
+.. image:: https://img.shields.io/coveralls/mb-wali/invenio-shibboleth.svg
+        :target: https://coveralls.io/r/mb-wali/invenio-shibboleth
 
 .. image:: https://img.shields.io/github/tag/mb-wali/invenio-shibboleth.svg
         :target: https://github.com/mb-wali/invenio-shibboleth/releases
@@ -24,6 +24,9 @@
 
 .. image:: https://img.shields.io/github/license/mb-wali/invenio-shibboleth.svg
         :target: https://github.com/mb-wali/invenio-shibboleth/blob/master/LICENSE
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 Invenio module that provides SAML integration.
 
