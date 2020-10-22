@@ -12,4 +12,4 @@ from __future__ import absolute_import, print_function
 
 from .ext import FlaskSSOSAML
 
-__all__ = ('FlaskSSOSAML')
+__all__ = "FlaskSSOSAML"

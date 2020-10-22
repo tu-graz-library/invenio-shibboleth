@@ -14,7 +14,7 @@ from werkzeug.local import LocalProxy
 
 def _get_current_sso_saml():
     """Return current state of the SSO SAML extension."""
-    return current_app.extensions['flask-sso-saml']
+    return current_app.extensions["flask-sso-saml"]
 
 
 current_sso_saml = LocalProxy(_get_current_sso_saml)

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2019 Esteban J. Garcia Gabancho.
-# Copyright (C) 2020 Mojib Wali.
+# Copyright (C) 2019 Esteban J. G. Gabancho.
 #
-# invenio-shibboleth is free software; you can redistribute it and/or modify it
+# Flask-SSO-SAML is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
+
 """Test example app."""
 
 import os
@@ -16,7 +16,7 @@ from os.path import abspath, dirname, join
 import pytest
 
 
-@pytest.fixture
+@pytest.yield_fixture
 def example_app():
     """Example app fixture."""
     current_dir = os.getcwd()
@@ -29,9 +29,6 @@ def example_app():
     # Setup application
     assert subprocess.call("./app-setup.sh", shell=True) == 0
 
-    # Setup fixtures
-    assert subprocess.call("./app-fixtures.sh", shell=True) == 0
-
     # Start example app
     webapp = subprocess.Popen(
         "FLASK_APP=app.py flask run --debugger -p 5000",
@@ -40,6 +37,7 @@ def example_app():
         shell=True,
     )
     time.sleep(10)
+
     yield webapp
 
     # Stop server
@@ -50,6 +48,3 @@ def example_app():
 
     # Return to the original directory
     os.chdir(current_dir)
-
-
-# TODO: def test_example_app(example_app):
