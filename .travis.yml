@@ -18,6 +18,7 @@ matrix:
   allow_failures:
     # To allow failures, you need to specify the full environment
     - env: REQUIREMENTS=devel
+    - env: REQUIREMENTS=lowest
 
 cache:
   - pip
