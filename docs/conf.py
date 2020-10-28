@@ -118,13 +118,13 @@ html_theme = "alabaster"
 
 html_theme_options = {
     "description": "Invenio module module that provides SAML integration.",
-    "github_user": "inveniosoftware",
+    "github_user": "TU Graz",
     "github_repo": "invenio-shibboleth",
     "github_button": False,
     "github_banner": True,
     "show_powered_by": False,
     "extra_nav_links": {
-        "invenio-shibboleth@GitHub": "https://github.com/mb-wali/invenio-shibboleth",
+        "invenio-shibboleth@GitHub": "https://github.com/tu-graz-library/invenio-shibboleth",
         "invenio-shibboleth@PyPI": "https://pypi.python.org/pypi/invenio-shibboleth/",
     },
 }
