@@ -10,8 +10,8 @@
  invenio-shibboleth
 ====================
 
-.. image:: https://travis-ci.com/mb-wali/invenio-shibboleth.svg
-        :target: https://travis-ci.com/github/mb-wali/invenio-shibboleth
+.. image:: https://travis-ci.com/tu-graz-library/invenio-shibboleth.svg
+        :target: https://travis-ci.com/github/tu-graz-library/invenio-shibboleth
 
 .. image:: https://img.shields.io/coveralls/mb-wali/invenio-shibboleth.svg
         :target: https://coveralls.io/r/mb-wali/invenio-shibboleth
@@ -49,37 +49,37 @@ Configuration
 .. code:: python
 
    SSO_SAML_IDPS = {
-    'onelogin': {
+    "onelogin": {
                 # settings_file_path can be either json or xml.
 		"settings_file_path": "./saml/onelogin/onelogin.json",
 		"sp_cert_file": "./saml/onelogin/cert/sp.crt",
 		"sp_key_file": "./saml/onelogin/cert/sp.key",
 
-        'settings': {
-            'sp': {
-                'NameIDFormat': 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+        "settings": {
+            "sp": {
+                "NameIDFormat': "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
             },
-            'security': {
-                'authnRequestsSigned': False,
-                'failOnAuthnContextMismatch': False,
-                'logoutRequestSigned': False,
-                'logoutResponseSigned': False,
-                'metadataCacheDuration': None,
-                'metadataValidUntil': None,
-                'nameIdEncrypted': False,
-                'requestedAuthnContext': False,
-                'requestedAuthnContextComparison': 'exact',
-                'signMetadata': False,
-                'signatureAlgorithm':
-                    'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
-                'wantAssertionsEncrypted': False,
-                'wantAssertionsSigned': False,
-                'wantAttributeStatement': False,
-                'wantMessagesSigned': False,
-                'wantNameId': True,
-                'wantNameIdEncrypted': False,
-                'digestAlgorithm':
-                    'http://www.w3.org/2001/04/xmlenc#sha256'
+            "security": {
+                "authnRequestsSigned": False,
+                "failOnAuthnContextMismatch": False,
+                "logoutRequestSigned": False,
+                "logoutResponseSigned": False,
+                "metadataCacheDuration": None,
+                "metadataValidUntil": None,
+                "nameIdEncrypted": False,
+                "requestedAuthnContext": False,
+                "requestedAuthnContextComparison": "exact",
+                "signMetadata": False,
+                "signatureAlgorithm":
+                    "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+                "wantAssertionsEncrypted": False,
+                "wantAssertionsSigned": False,
+                "wantAttributeStatement": False,
+                "wantMessagesSigned": False,
+                "wantNameId": True,
+                "wantNameIdEncrypted": False,
+                "digestAlgorithm":
+                    "http://www.w3.org/2001/04/xmlenc#sha256"
             },
         },
  
@@ -91,7 +91,7 @@ Configuration
             "external_id": "external_id",
         },
 
-        'acs_handler': acs_handler_factory('onelogin'),
+        "acs_handler": acs_handler_factory("onelogin"),
 
           },
 
