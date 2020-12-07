@@ -38,6 +38,12 @@ These two modules has been merged into one:
 ====================
  Installation
 ====================
+*First of all you need some packages, execute:*
+
+``apt-get install libxml2-dev libxmlsec1-dev libxmlsec1-openssl``
+
+*Install*
+
 ``pip install invenio-shibboleth``
 
 ====================
