@@ -52,9 +52,9 @@ setup_requires = [
 
 install_requires = [
     "python3-saml>=1.5.0",
-    "invenio_oauthclient>=1.2.1",
+    "invenio_oauthclient>=1.4.1",
     "invenio-app>=1.3.0",
-    "invenio-accounts>=1.2.0",
+    "invenio-accounts>=1.4.0",
     "idna>=2.5,<3",
 ]
 
