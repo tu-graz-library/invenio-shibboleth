@@ -11,19 +11,19 @@
 ====================
 
 .. image:: https://github.com/tu-graz-library/invenio-shibboleth/workflows/CI/badge.svg
-        :target: https://github.com/github/tu-graz-library/invenio-shibboleth/actions
+        :target: https://github.com/tu-graz-library/invenio-shibboleth/actions
 
 .. image:: https://img.shields.io/coveralls/mb-wali/invenio-shibboleth.svg
         :target: https://coveralls.io/r/mb-wali/invenio-shibboleth
 
-.. image:: https://img.shields.io/github/tag/mb-wali/invenio-shibboleth.svg
-        :target: https://github.com/mb-wali/invenio-shibboleth/releases
+.. image:: https://img.shields.io/github/tag/tu-graz-library/invenio-shibboleth.svg
+        :target: https://github.com/tu-graz-library/invenio-shibboleth/releases
 
 .. image:: https://img.shields.io/pypi/dm/invenio-shibboleth.svg
         :target: https://pypi.python.org/pypi/invenio-shibboleth
 
-.. image:: https://img.shields.io/github/license/mb-wali/invenio-shibboleth.svg
-        :target: https://github.com/mb-wali/invenio-shibboleth/blob/master/LICENSE
+.. image:: https://img.shields.io/github/license/tu-graz-library/invenio-shibboleth.svg
+        :target: https://github.com/tu-graz-library/invenio-shibboleth/blob/master/LICENSE
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
