@@ -51,8 +51,6 @@ setup_requires = [
 ]
 
 install_requires = [
-    "Flask-BabelEx>=0.9.4",
-    "Flask>=1.0",
     "python3-saml>=1.5.0",
     "invenio_oauthclient>=1.2.1",
     "invenio-app>=1.3.0",
