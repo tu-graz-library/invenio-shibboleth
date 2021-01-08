@@ -17,6 +17,8 @@ from __future__ import absolute_import, print_function
 import pytest
 from invenio_app.factory import create_app as create_invenio_app
 
+pytest_plugins = ("celery.contrib.pytest", )
+
 
 @pytest.fixture(scope="module")
 def app_config(app_config):

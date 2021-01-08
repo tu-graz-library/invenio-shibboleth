@@ -16,17 +16,18 @@ readme = open("README.rst").read()
 history = open("CHANGES.rst").read()
 
 tests_require = [
-    "pytest-invenio>=1.4.0",
+    "pytest-invenio>=1.4.1",
     "invenio-app>=1.0.4",
     "invenio-mail>=1.0.0",
     "invenio-userprofiles>=1.0.0",
     "redis>=2.10.5",
     "mock>=2.0.0",
+    "psycopg2-binary>=2.8.6",
 ]
 
 extras_require = {
     "docs": [
-        "Sphinx>=1.5.1",
+        "Sphinx>=3",
     ],
     "mysql": [
         "invenio-db[mysql]>=1.0.0",
@@ -50,12 +51,11 @@ setup_requires = [
 ]
 
 install_requires = [
-    "Flask-BabelEx>=0.9.4",
-    "Flask>=1.0",
     "python3-saml>=1.5.0",
-    "invenio_oauthclient>=1.2.1",
+    "invenio_oauthclient>=1.4.1",
     "invenio-app>=1.3.0",
-    "invenio-accounts>=1.2.0",
+    "invenio-accounts>=1.4.0",
+    "idna>=2.5,<3",
 ]
 
 packages = find_packages()

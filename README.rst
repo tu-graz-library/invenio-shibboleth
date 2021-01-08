@@ -10,8 +10,8 @@
  invenio-shibboleth
 ====================
 
-.. image:: https://travis-ci.com/tu-graz-library/invenio-shibboleth.svg
-        :target: https://travis-ci.com/github/tu-graz-library/invenio-shibboleth
+.. image:: https://github.com/tu-graz-library/invenio-shibboleth/workflows/CI/badge.svg
+        :target: https://github.com/github/tu-graz-library/invenio-shibboleth/actions
 
 .. image:: https://img.shields.io/coveralls/mb-wali/invenio-shibboleth.svg
         :target: https://coveralls.io/r/mb-wali/invenio-shibboleth
