@@ -67,13 +67,10 @@ def account_info(attributes, remote_app):
         # set the value to the session
         session["identifier"] = identifier
 
-    # TODO: get prefix
-    prefix = "TUG"
-
     return dict(
         user=dict(
             email=email,
-            profile=dict(username=prefix + external_id.split('@')[0],
+            profile=dict(username="TUG" + external_id.split('@')[0],
                          full_name=name + " " + surname),
         ),
         external_id=external_id,
