@@ -70,7 +70,8 @@ def account_info(attributes, remote_app):
     return dict(
         user=dict(
             email=email,
-            profile=dict(username=surname, full_name=name + " " + surname),
+            profile=dict(username="TUG" + external_id.split('@')[0],
+                         full_name=name + " " + surname),
         ),
         external_id=external_id,
         external_method=remote_app,
