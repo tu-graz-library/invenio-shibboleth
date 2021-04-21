@@ -15,9 +15,12 @@ from setuptools import find_packages, setup
 readme = open("README.rst").read()
 history = open("CHANGES.rst").read()
 
+# Should follow invenio-app-rdm
+invenio_db_version = ">=1.0.9,<1.1.0"
+
 tests_require = [
     "pytest-invenio>=1.4.1",
-    "invenio-app>=1.0.4",
+    "invenio-app>=1.3.0,<2.0.0",
     "invenio-mail>=1.0.0",
     "invenio-userprofiles>=1.0.0",
     "redis>=2.10.5",
@@ -29,20 +32,20 @@ extras_require = {
     "docs": [
         "Sphinx>=3",
     ],
-    "mysql": [
-        "invenio-db[mysql]>=1.0.0",
-    ],
-    "postgresql": [
-        "invenio-db[postgresql]>=1.0.0",
-    ],
-    "sqlite": [
-        "invenio-db>=1.0.0",
-    ],
+    "mysql": [f"invenio-db[mysql,versioning]{invenio_db_version}"],
+    "postgresql": [f"invenio-db[postgresql,versioning]{invenio_db_version}"],
+    "sqlite": [f"invenio-db[versioning]{invenio_db_version}"],
     "tests": tests_require,
 }
 
 extras_require["all"] = []
-for reqs in extras_require.values():
+for name, reqs in extras_require.items():
+    if name[0] == ":" or name in (
+        "mysql",
+        "postgresql",
+        "sqlite",
+    ):
+        continue
     extras_require["all"].extend(reqs)
 
 setup_requires = [
@@ -53,7 +56,6 @@ setup_requires = [
 install_requires = [
     "python3-saml>=1.5.0",
     "invenio_oauthclient>=1.4.1",
-    "invenio-app>=1.3.0",
     "invenio-accounts>=1.4.0",
     "idna>=2.5,<3",
 ]
